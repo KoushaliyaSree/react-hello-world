@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+
+     environment {
+        NODEJS_HOME = '/usr/local/bin/node'
+        PATH = "${env.NODEJS_HOME}/bin:${env.PATH}"
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout the source code from your version control system (e.g., Git)
+                git 'https://github.com/buddy-works/react-hello-world.git'
+            }
+        }
+
+
+
+        stage('Install Dependencies') {
+            steps {
+               
+                // Install dependencies using npm
+                sh 'npm install'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                // Build the React application
+                sh 'npm run build'
+            }
+        }
+
+    
+    }
+}
