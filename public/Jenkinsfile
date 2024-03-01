@@ -1,16 +1,16 @@
 pipeline {
     agent any
 
-     environment {
-        NODEJS_HOME = '/usr/local/bin/node'
-        PATH = "${env.NODEJS_HOME}/bin:${env.PATH}"
+    tools
+    {
+        node 'node'
     }
 
     stages {
         stage('Checkout') {
             steps {
                 // Checkout the source code from your version control system (e.g., Git)
-                git 'https://github.com/buddy-works/react-hello-world.git'
+                git 'https://github.com/KoushaliyaSree/HelloWorldJenkins.git'
             }
         }
 
@@ -28,6 +28,12 @@ pipeline {
             steps {
                 // Build the React application
                 sh 'npm run build'
+            }
+        }
+        stage('test') {
+            steps {
+                // Build the React application
+                echo "test"
             }
         }
 
